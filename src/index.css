@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bg-img{
+    background: url(/questionmark.jpg);
+}
+.checkbox-container input[type="radio"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+  }

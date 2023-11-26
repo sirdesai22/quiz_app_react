@@ -1,0 +1,65 @@
+{
+    "response_code": 0,
+    "results": [
+      {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science: Computers",
+        "question": "How many kilobytes in one gigabyte (in decimal)?",
+        "correct_answer": "1000000",
+        "incorrect_answers": [
+          "1024",
+          "1000",
+          "1048576"
+        ]
+      },
+      {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science: Computers",
+        "question": "According to the International System of Units, how many bytes are in a kilobyte of RAM?",
+        "correct_answer": "1000",
+        "incorrect_answers": [
+          "512",
+          "1024",
+          "500"
+        ]
+      },
+      {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science: Computers",
+        "question": "This mobile OS held the largest market share in 2012.",
+        "correct_answer": "iOS",
+        "incorrect_answers": [
+          "Android",
+          "BlackBerry",
+          "Symbian"
+        ]
+      },
+      {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science: Computers",
+        "question": "The series of the Intel HD graphics generation succeeding that of the 5000 and 6000 series (Broadwell) is called:",
+        "correct_answer": "HD Graphics 500",
+        "incorrect_answers": [
+          "HD Graphics 700 ",
+          "HD Graphics 600",
+          "HD Graphics 7000"
+        ]
+      },
+      {
+        "type": "multiple",
+        "difficulty": "easy",
+        "category": "Science: Computers",
+        "question": "In any programming language, what is the most common way to iterate through an array?",
+        "correct_answer": "&#039;For&#039; loops",
+        "incorrect_answers": [
+          "&#039;If&#039; Statements",
+          "&#039;Do-while&#039; loops",
+          "&#039;While&#039; loops"
+        ]
+      }
+    ]
+  }

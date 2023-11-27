@@ -109,8 +109,8 @@ const Quiz = ({ score, setScore }) => {
                 </button>
               </Link>
             )}
-            <p>{isAnswerCorrect() ? 'Correct!' : 'Incorrect!'}</p>
-            <p>{score}</p>
+            {/* <p>{isAnswerCorrect() ? 'Correct!' : 'Incorrect!'}</p>
+            <p>{score}</p> */}
           </>
         ) : (
           <p>Loading...</p>

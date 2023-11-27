@@ -3,11 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import './index.css'
 import he from 'he'
 
-const Quiz = () => {
+const Quiz = ({ score, setScore }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  // const [scoreCount, setScoreCount] = useState(0)
   const { category } = useParams();
+
   const topic = {
     science: 18,
     music: 12,
@@ -33,14 +36,31 @@ const Quiz = () => {
       });
   }, [URL]);
 
+  const handleOptionChange = event => {
+    setSelectedOption(event.target.value);
+  };
+
   const handleNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
+      const isCorrect = selectedOption === currentQuestionData.correct_answer;
+      if (isCorrect) {
+        setScore(score + 1);
+        // console.log(score)
+      }
+
       setCurrentQuestion(currentQuestion + 1);
-      makeOptions(questions[currentQuestion + 1]);
-      return true
+      setSelectedOption(null);
+
+      return isCorrect;
     }
     else return false
   };
+
+  useEffect(() => {
+    if (currentQuestion < questions.length) {
+      makeOptions(questions[currentQuestion]);
+    }
+  }, [currentQuestion, questions]);
 
   const currentQuestionData = questions[currentQuestion];
 
@@ -50,10 +70,14 @@ const Quiz = () => {
     options.splice(randomIndex, 0, currentQuestionData.correct_answer);
     setOptions(options);
   };
-
-  const finishQuiz = () => {
-    console.log("Finished")
-  }
+  const isAnswerCorrect = () => {
+    // if(selectedOption === currentQuestionData.correct_answer){
+    //   setScoreCount(scoreCount+1)
+    //   return true
+    // }
+    // return false;
+    return selectedOption === currentQuestionData.correct_answer;
+  };
 
   return (
     <div className='h-screen flex justify-center items-center bg-img'>
@@ -61,12 +85,12 @@ const Quiz = () => {
         {currentQuestionData ? (
           <>
             <h2 className='text-3xl font-semibold mb-5'>
-              Q. {he.decode(currentQuestionData.question)}
+              Q.{currentQuestion+1} {he.decode(currentQuestionData.question)}
             </h2>
             <div className='flex gap-3 text-xl flex-col checkbox-container'>
               {options.map((answer, index) => (
                 <label key={index}>
-                  <input type='radio' name='option' />
+                  <input type='radio' name='option' onChange={handleOptionChange} value={answer} />
                   {he.decode(answer)}
                 </label>
               ))}
@@ -74,8 +98,7 @@ const Quiz = () => {
             {currentQuestion < questions.length - 1 ? (
               <button
                 onClick={handleNextQuestion}
-                className='bg-green-500 py-2 px-5 shadow-lg text-xl rounded-md font-semibold mt-5'
-              >
+                className='bg-green-500 py-2 px-5 shadow-lg text-xl rounded-md font-semibold mt-5'>
                 Next
               </button>
             ) : (
@@ -86,6 +109,8 @@ const Quiz = () => {
                 </button>
               </Link>
             )}
+            <p>{isAnswerCorrect() ? 'Correct!' : 'Incorrect!'}</p>
+            <p>{score}</p>
           </>
         ) : (
           <p>Loading...</p>
